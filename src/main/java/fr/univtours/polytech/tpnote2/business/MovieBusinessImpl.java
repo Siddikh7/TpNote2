@@ -37,10 +37,11 @@ public class MovieBusinessImpl implements MovieBusiness {
         movieDao.deleteMoviebyId(id);
     }
 
+    @Override
     public void increaseNote(Integer id) {
         MovieBean movie = movieDao.getMovie(id);
         if (movie != null) {
-            if (movie.getNote() == null) {
+            if (movie.getNote() == 0) {
                 movie.setNote(1);
             } else if (movie.getNote() < 5) {
                 movie.setNote(movie.getNote() + 1);
@@ -49,10 +50,11 @@ public class MovieBusinessImpl implements MovieBusiness {
         }
     }
 
+    @Override
     public void decreaseNote(Integer id) {
         MovieBean movie = movieDao.getMovie(id);
         if (movie != null) {
-            if (movie.getNote() == null) {
+            if (movie.getNote() == 0) {
                 movie.setNote(5);
             } else if (movie.getNote() > 1) {
                 movie.setNote(movie.getNote() - 1);

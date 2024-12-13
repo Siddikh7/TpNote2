@@ -42,10 +42,10 @@ public class MovieDaoImpl implements MovieDao {
     }
 
     public void deleteMoviebyId(Integer id){
-        MovieBean managedMovieBean = em.find(MovieBean.class, movieBean.getId());
+        MovieBean managedMovieBean = em.find(MovieBean.class, id);
         if (managedMovieBean != null) {
             em.remove(managedMovieBean);
-        } 
+        }
     }
 
     public MovieBean findMoviebyId(Integer id){
