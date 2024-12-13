@@ -21,4 +21,4 @@ public interface MovieBusiness {
 
     public void decreaseNote(Integer id);
 }
-﻿
+

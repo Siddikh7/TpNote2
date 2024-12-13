@@ -41,6 +41,7 @@ public class MovieDaoImpl implements MovieDao {
         em.merge(em.contains(movieBean)? movieBean : em.merge(movieBean));
     }
 
+    @Override
     public void deleteMoviebyId(Integer id){
         MovieBean managedMovieBean = em.find(MovieBean.class, id);
         if (managedMovieBean != null) {
@@ -48,6 +49,7 @@ public class MovieDaoImpl implements MovieDao {
         }
     }
 
+    @Override
     public MovieBean findMoviebyId(Integer id){
         return em.find(MovieBean.class, id);
     }

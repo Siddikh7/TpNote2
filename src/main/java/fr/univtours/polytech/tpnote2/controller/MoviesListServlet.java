@@ -23,7 +23,7 @@ public class MoviesListServlet extends HttpServlet {
             throws ServletException, IOException {
         List<MovieBean> moviesList = business.getMovies();
         request.setAttribute("RESULTS_LIST", moviesList);
-        request.getRequestDispatcher("moviesList.jsp").forward(request, response);
+        request.getRequestDispatcher("MovieList.jsp").forward(request, response);
     }
 
     @Override
