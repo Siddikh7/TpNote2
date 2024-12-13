@@ -2,7 +2,7 @@ package fr.univtours.polytech.tpnote2.dao;
 
 import java.util.List;
 
-import fr.univtours.polytech.tpnote2.model.LocationBean;
+import fr.univtours.polytech.tpnote2.model.MovieBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -11,38 +11,42 @@ import jakarta.persistence.Query;
 @Stateless
 public class MovieDaoImpl implements MovieDao {
 
-    @PersistenceContext(unitName = "LocationApp")
+    @PersistenceContext(unitName = "MovieApp")
     private EntityManager em;
 
     @Override
-    public void createLocation(LocationBean bean) {
+    public void addMovie(MovieBean bean) {
         em.persist(bean);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<LocationBean> getLocations() {
-        Query request = em.createQuery("select l from LocationBean l");
+    public List<MovieBean> getMovies() {
+        Query request = em.createQuery("select l from MovieBean l");
         return request.getResultList();
     }
 
     @Override
-    public LocationBean getLocation(Integer id) {
-        return em.find(LocationBean.class, id);
+    public MovieBean getMovie(Integer id) {
+        return em.find(MovieBean.class, id);
     }
 
     @Override
-    public void updateLocation(LocationBean locationBean) {
-        em.merge(locationBean);
+    public void updateMovie(MovieBean movieBean) {
+        em.merge(movieBean);
     }
 
     @Override
-    public void deleteLocation(LocationBean locationBean) {
-        em.remove(locationBean);
+    public void deleteMovie(MovieBean movieBean) {
+        em.remove(movieBean);
     }
 
-    public LocationBean findLocationById(Integer id){
-        return em.find(LocationBean.class, id);
+    public void deleteMoviebyId(MovieBean movieBean){
+        
+    }
+
+    public MovieBean findMoviebyId(Integer id){
+        return em.find(MovieBean.class, id);
     }
 
 

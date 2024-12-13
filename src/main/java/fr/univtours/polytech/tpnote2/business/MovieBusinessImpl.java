@@ -4,7 +4,6 @@ import java.util.List;
 
 import fr.univtours.polytech.tpnote2.dao.MovieDao;
 import fr.univtours.polytech.tpnote2.model.MovieBean;
-import jakarta.ejb.Local;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
@@ -14,15 +13,21 @@ public class MovieBusinessImpl {
     @Inject
     private MovieDao movieDao;
 
-    public void addMovie(MovieBean locationBean){
-
+    public void addMovie(MovieBean movieBean){
+        //movieDao.addMovie();
     }
 
-    public List<MovieBean> getMovies(){}
+    public List<MovieBean> getMovies(){
+        
+    }
 
-    public MovieBean getMovie(Integer id){}
+    public MovieBean getMovie(Integer id){
+        
+    }
 
-    public void updateMovie(MovieBean locationBean){}
+    public void updateMovie(MovieBean movieBean){
+
+    }
 
     public void deleteMovie(Integer id){}
 

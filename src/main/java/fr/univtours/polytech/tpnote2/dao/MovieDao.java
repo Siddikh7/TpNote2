@@ -2,19 +2,21 @@ package fr.univtours.polytech.tpnote2.dao;
 
 import java.util.List;
 
-import fr.univtours.polytech.tpnote2.model.LocationBean;
+import fr.univtours.polytech.tpnote2.model.MovieBean;
 
 public interface MovieDao {
 
-    public void createMovie(LocationBean bean);
+    public void addMovie(MovieBean bean);
 
-    public List<LocationBean> getLocations();
+    public List<MovieBean> getMovies();
 
-    public LocationBean getLocation(Integer id);
+    public MovieBean getMovie(Integer id);
 
-    public void updateLocation(LocationBean locationBean);
+    public void updateMovie(MovieBean MovieBean);
 
-    public void deleteLocation(LocationBean locationBean);
+    public void deleteMovie(MovieBean MovieBean);
 
-    public LocationBean findLocationById(Integer id);
+    public void deleteMoviebyId(MovieBean movieBean);
+
+    public MovieBean findMoviebyId(Integer id);
 }
