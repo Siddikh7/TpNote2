@@ -2,9 +2,8 @@ package fr.univtours.polytech.tpnote2.controller;
 
 import java.io.IOException;
 import java.util.List;
-
-import fr.univtours.polytech.tpnote2.business.MovieBusinessImpl;
-import fr.univtours.polytech.tpnote2.model.LocationBean;
+import fr.univtours.polytech.tpnote2.business.MovieBusiness;
+import fr.univtours.polytech.tpnote2.model.MovieBean;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,23 +11,33 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class LocationsListServlet
- */
-@WebServlet("/locationsList")
+@WebServlet("/moviesList")
 public class MoviesListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @EJB
-    private MovieBusinessImpl business;
+    private MovieBusiness business;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<LocationBean> locationsList = business.getLocations();
+        List<MovieBean> moviesList = business.getMovies();
+        request.setAttribute("RESULTS_LIST", moviesList);
+        request.getRequestDispatcher("moviesList.jsp").forward(request, response);
+    }
 
-        request.setAttribute("LOCATIONS_LIST", locationsList);
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        Integer id = Integer.parseInt(request.getParameter("id"));
 
-        request.getRequestDispatcher("locationsList.jsp").forward(request, response);
+        if ("increase".equals(action)) {
+            business.increaseNote(id);
+        } else if ("decrease".equals(action)) {
+            business.decreaseNote(id);
+        }
+
+        response.sendRedirect("moviesList");
     }
 }

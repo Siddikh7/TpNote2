@@ -16,7 +16,7 @@ public interface MovieDao {
 
     public void deleteMovie(MovieBean MovieBean);
 
-    public void deleteMoviebyId(MovieBean movieBean);
+    public void deleteMoviebyId(Integer id);
 
     public MovieBean findMoviebyId(Integer id);
 }

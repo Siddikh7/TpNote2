@@ -22,7 +22,7 @@ public class MovieDaoImpl implements MovieDao {
     @SuppressWarnings("unchecked")
     @Override
     public List<MovieBean> getMovies() {
-        Query request = em.createQuery("select l from MovieBean l");
+        Query request = em.createQuery("select m from MovieBean m");
         return request.getResultList();
     }
 
@@ -38,11 +38,14 @@ public class MovieDaoImpl implements MovieDao {
 
     @Override
     public void deleteMovie(MovieBean movieBean) {
-        em.remove(movieBean);
+        em.merge(em.contains(movieBean)? movieBean : em.merge(movieBean));
     }
 
-    public void deleteMoviebyId(MovieBean movieBean){
-        
+    public void deleteMoviebyId(Integer id){
+        MovieBean managedMovieBean = em.find(MovieBean.class, movieBean.getId());
+        if (managedMovieBean != null) {
+            em.remove(managedMovieBean);
+        } 
     }
 
     public MovieBean findMoviebyId(Integer id){
